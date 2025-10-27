@@ -1,0 +1,21 @@
+services:
+  redis:
+    image: redis:7
+    container_name: backend-work
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    # 1. Đặt biến môi trường
+    environment:
+      - REDIS_PASSWORD=password
+    # 2. Sử dụng biến môi trường trong lệnh khởi động Redis
+    command:
+      - "redis-server"
+      - "--appendonly"
+      - "yes"
+      - "--requirepass"
+      - "${REDIS_PASSWORD}" # Mật khẩu sẽ là 'password'
+
+volumes:
+  redis_data:

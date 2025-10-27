@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cập nhật trạng thái ứng tuyển</title>
+</head>
+<body style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color:#f0f4f8; margin:0; padding:0;">
+
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f0f4f8; padding:40px 20px;">
+    <tr>
+        <td align="center">
+            <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color:#ffffff; border-radius:16px; box-shadow:0 8px 32px rgba(0,0,0,0.12); overflow:hidden;">
+
+                <!-- Header với gradient -->
+                <tr>
+                    <td align="center" style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding:50px 30px;">
+                        <div style="background:rgba(255,255,255,0.2); backdrop-filter:blur(10px); border-radius:12px; padding:20px 30px; display:inline-block;">
+                            <h1 style="color:#ffffff; margin:0; font-size:32px; font-weight:700; text-shadow:0 2px 8px rgba(0,0,0,0.2);"
+                                th:text="${statusIcon} + ' Thông báo ứng tuyển'"></h1>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Job info card -->
+                <tr>
+                    <td style="padding:40px 40px 20px;">
+                        <div style="background:linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border-radius:12px; padding:24px; border:2px solid #667eea30;">
+                            <div style="display:flex; align-items:center; margin-bottom:8px;">
+                                <span style="font-size:24px; margin-right:10px;">💼</span>
+                                <h2 style="margin:0; color:#667eea; font-size:24px; font-weight:700;" th:text="${jobName}"></h2>
+                            </div>
+                            <div style="display:flex; align-items:center; margin-top:12px;">
+                                <span style="font-size:20px; margin-right:10px;">🏢</span>
+                                <p style="margin:0; color:#555; font-size:18px; font-weight:500;">
+                                    <span th:text="${companyName}"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Greeting -->
+                <tr>
+                    <td style="padding:10px 40px 0;">
+                        <p style="color:#2d3748; font-size:16px; line-height:1.8; margin:0;">Xin chào,</p>
+                        <p style="color:#2d3748; font-size:16px; line-height:1.8; margin-top:10px;">
+                            Hồ sơ ứng tuyển của bạn đã có cập nhật mới từ nhà tuyển dụng:
+                        </p>
+                    </td>
+                </tr>
+
+                <!-- Status card với animation-ready design -->
+                <tr>
+                    <td align="center" style="padding:30px 40px;">
+                        <div style="background:#ffffff; border-radius:16px; padding:30px; box-shadow:0 4px 20px rgba(0,0,0,0.08); border:2px solid #e2e8f0;">
+                            <div style="font-size:14px; color:#718096; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:12px;">
+                                Trạng thái mới
+                            </div>
+                            <div style="font-size:36px; font-weight:800; margin:10px 0; text-align:center;"
+                                 th:style="'color:' + ${statusColor}"
+                                 th:text="${statusIcon} + ' ' + ${statusText}">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Message card -->
+                <tr>
+                    <td style="padding:0 40px;">
+                        <div style="background:linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); border-radius:12px; padding:20px 24px; border-left:4px solid #667eea;">
+                            <p style="color:#2d3748; font-size:16px; line-height:1.8; margin:0; font-weight:500;" th:text="${message}"></p>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- CTA Button -->
+                <tr>
+                    <td align="center" style="padding:40px 40px 20px;">
+                        <a href="http://localhost:3000/resumes"
+                           style="display:inline-block; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#ffffff; text-decoration:none; padding:16px 40px; border-radius:50px; font-weight:700; font-size:16px; letter-spacing:0.5px; box-shadow:0 4px 15px rgba(102,126,234,0.4); transition:all 0.3s;">
+                            Xem chi tiết hồ sơ →
+                        </a>
+                    </td>
+                </tr>
+
+                <!-- Tips section -->
+                <tr>
+                    <td style="padding:20px 40px 40px;">
+                        <div style="background:linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%); border-radius:12px; padding:24px; border-left:4px solid #f39c12;">
+                            <div style="display:flex; align-items:center; margin-bottom:16px;">
+                                <span style="font-size:24px; margin-right:10px;">💡</span>
+                                <h3 style="margin:0; color:#d68910; font-size:18px; font-weight:700;">Gợi ý cho bạn</h3>
+                            </div>
+                            <ul style="margin:0; padding-left:20px; color:#5d4037; font-size:15px; line-height:2;">
+                                <li style="margin-bottom:8px;">Cập nhật hồ sơ thường xuyên để tăng cơ hội được chấp nhận</li>
+                                <li style="margin-bottom:8px;">Theo dõi email để không bỏ lỡ thông báo quan trọng</li>
+                                <li>Khám phá thêm các cơ hội việc làm phù hợp khác</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Divider -->
+                <tr>
+                    <td style="padding:0 40px;">
+                        <div style="height:1px; background:linear-gradient(90deg, transparent 0%, #cbd5e0 50%, transparent 100%);"></div>
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td align="center" style="padding:30px 40px; background:linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);">
+                        <p style="color:#718096; font-size:13px; line-height:1.8; margin:0;">
+                            📧 Email này được gửi tự động, vui lòng không trả lời.<br>
+                            💬 Nếu bạn có thắc mắc, vui lòng liên hệ với nhà tuyển dụng trực tiếp.
+                        </p>
+                        <div style="margin-top:20px; padding-top:20px; border-top:1px solid #cbd5e0;">
+                            <p style="color:#a0aec0; font-size:12px; margin:0; font-weight:600;">
+                                © 2024 BackEnd Works. All rights reserved.
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+
+            <!-- Decorative elements -->
+            <div style="text-align:center; margin-top:30px;">
+                <p style="color:#a0aec0; font-size:12px; margin:0;">
+                    Bạn nhận được email này vì đã ứng tuyển vào vị trí tại BackEnd Works
+                </p>
+            </div>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

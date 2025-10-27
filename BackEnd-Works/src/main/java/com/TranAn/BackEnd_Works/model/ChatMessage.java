@@ -1,0 +1,47 @@
+package com.TranAn.BackEnd_Works.model;
+
+import com.TranAn.BackEnd_Works.model.common.BaseEntity;
+import com.TranAn.BackEnd_Works.model.constant.MessageRole;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "chat_messages", indexes = {
+        @Index(name = "idx_user_session", columnList = "user_id, session_id"),
+        @Index(name = "idx_created_at", columnList = "created_at")
+})
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@Builder
+public class ChatMessage extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @ToString.Exclude
+    private User user;
+
+    @Column(name = "session_id", nullable = false, length = 100)
+    private String sessionId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private MessageRole role;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
+
+    // Constructor để dễ tạo message
+    public ChatMessage(User user, String sessionId, MessageRole role, String content) {
+        this.user = user;
+        this.sessionId = sessionId;
+        this.role = role;
+        this.content = content;
+    }
+}
